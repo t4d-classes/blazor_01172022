@@ -1,0 +1,12 @@
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp.Models\bin\Debug\net6.0\ToolsApp.Models.deps.json
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp.Models\bin\Debug\net6.0\ToolsApp.Models.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp.Models\bin\Debug\net6.0\ref\ToolsApp.Models.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp.Models\bin\Debug\net6.0\ToolsApp.Models.pdb
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp.Models\obj\Debug\net6.0\ToolsApp.Models.csproj.AssemblyReference.cache
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp.Models\obj\Debug\net6.0\ToolsApp.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp.Models\obj\Debug\net6.0\ToolsApp.Models.AssemblyInfoInputs.cache
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp.Models\obj\Debug\net6.0\ToolsApp.Models.AssemblyInfo.cs
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp.Models\obj\Debug\net6.0\ToolsApp.Models.csproj.CoreCompileInputs.cache
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp.Models\obj\Debug\net6.0\ToolsApp.Models.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp.Models\obj\Debug\net6.0\ref\ToolsApp.Models.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp.Models\obj\Debug\net6.0\ToolsApp.Models.pdb
