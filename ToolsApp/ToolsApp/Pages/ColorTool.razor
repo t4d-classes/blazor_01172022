@@ -3,16 +3,9 @@
 @using ToolsApp.Models.Colors
 @using ToolsApp.Components.ColorTool
 
-<header>
-  <h3>Color Tool</h3>
-</header>
+<ToolHeader HeaderText="Color Tool" />
 
-<ul>
-	@foreach(var color in Colors)
-	{
-		<li>@color.Name</li>
-	}
-</ul>
+<ColorList Colors="@Colors" />
 
 <ColorForm ButtonText="Add Color" OnSubmitColor="AppendColor" />
 

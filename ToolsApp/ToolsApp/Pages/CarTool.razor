@@ -3,11 +3,9 @@
 @using ToolsApp.Models.Cars
 @using ToolsApp.Components.CarTool
 
-<header>
-    <h3>Car Tool</h3>
-</header>
-
+<ToolHeader HeaderText="Car Tool" />
 <CarTable Cars="@Cars" />
+<CarForm ButtonText="Add Car" OnSubmitCar="AppendCar" />
 
 
 @code {
@@ -17,4 +15,18 @@
             new(1, "Tesla", "S", 2019, "blue", 120000.0M),
             new(2, "Ford", "Fusion Hybrid", 2020, "green", 45000.0M)
         };
+
+	  private void AppendCar(NewCar car)
+	  {
+		  Cars.Add(
+				  new(
+					  Cars.Max(c => c.Id) + 1,
+					  car.Make,
+					  car.Model,
+					  car.Year,
+					  car.Color,
+		        car.Price
+				  )
+		  );
+	  }
 }

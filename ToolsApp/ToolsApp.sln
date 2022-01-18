@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolsApp", "ToolsApp\ToolsApp.csproj", "{4CDAE07E-EA10-4A77-AC85-9FFD2555FC5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolsApp", "ToolsApp\ToolsApp.csproj", "{4CDAE07E-EA10-4A77-AC85-9FFD2555FC5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolsApp.Components", "ToolsApp.Components\ToolsApp.Components.csproj", "{BBB41C37-676D-4598-B0A2-0375219005F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolsApp.Components", "ToolsApp.Components\ToolsApp.Components.csproj", "{BBB41C37-676D-4598-B0A2-0375219005F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolsApp.Models", "ToolsApp.Models\ToolsApp.Models.csproj", "{63002323-073C-46F0-8508-AAFF471D76D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolsApp.Models", "ToolsApp.Models\ToolsApp.Models.csproj", "{63002323-073C-46F0-8508-AAFF471D76D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolsApp.Services", "ToolsApp.Services\ToolsApp.Services.csproj", "{7AE0B2B3-6334-4974-8BB6-80FD485F7900}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolsApp.Services", "ToolsApp.Services\ToolsApp.Services.csproj", "{7AE0B2B3-6334-4974-8BB6-80FD485F7900}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
