@@ -1,4 +1,4 @@
-namespace ToolsApp.Data
+namespace ToolsApp.Web.Data
 {
   public class WeatherForecast
   {
