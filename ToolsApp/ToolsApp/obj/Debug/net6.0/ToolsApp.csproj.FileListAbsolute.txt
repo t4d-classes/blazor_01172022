@@ -25,3 +25,17 @@ C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\obj\Debug\net6.0\Tools
 C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\obj\Debug\net6.0\ref\ToolsApp.dll
 C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\obj\Debug\net6.0\ToolsApp.pdb
 C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\obj\Debug\net6.0\ToolsApp.genruntimeconfig.cache
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\bin\Debug\net6.0\ToolsApp.Components.staticwebassets.runtime.json
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\bin\Debug\net6.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\bin\Debug\net6.0\Microsoft.AspNetCore.Components.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\bin\Debug\net6.0\Microsoft.JSInterop.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\bin\Debug\net6.0\System.IO.Pipelines.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\bin\Debug\net6.0\ToolsApp.Components.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\bin\Debug\net6.0\ToolsApp.Models.dll
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\bin\Debug\net6.0\ToolsApp.Components.pdb
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\bin\Debug\net6.0\ToolsApp.Models.pdb
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\obj\Debug\net6.0\ToolsApp.csproj.CopyComplete
+C:\Users\EricGreene\git\blazor_01172022\ToolsApp\ToolsApp\obj\Debug\net6.0\scopedcss\Pages\ColorTool.razor.rz.scp.css

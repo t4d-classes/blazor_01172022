@@ -1,3 +1,9 @@
+@import '_content/ToolsApp.Components/ToolsApp.Components.bundle.scp.css';
+
+/* _content/ToolsApp/Pages/ColorTool.razor.rz.scp.css */
+label[b-pkluo4bifa] {
+  display: block;
+}
 /* _content/ToolsApp/Shared/MainLayout.razor.rz.scp.css */
 .page[b-iv6exjmiqw] {
     position: relative;

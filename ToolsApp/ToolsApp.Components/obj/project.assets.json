@@ -172,6 +172,16 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "ToolsApp.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/ToolsApp.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ToolsApp.Models.dll": {}
+        }
       }
     }
   },
@@ -487,11 +497,17 @@
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "ToolsApp.Models/1.0.0": {
+      "type": "project",
+      "path": "../ToolsApp.Models/ToolsApp.Models.csproj",
+      "msbuildProject": "../ToolsApp.Models/ToolsApp.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Microsoft.AspNetCore.Components.Web >= 6.0.1"
+      "Microsoft.AspNetCore.Components.Web >= 6.0.1",
+      "ToolsApp.Models >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -520,7 +536,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\EricGreene\\git\\blazor_01172022\\ToolsApp\\ToolsApp.Models\\ToolsApp.Models.csproj": {
+              "projectPath": "C:\\Users\\EricGreene\\git\\blazor_01172022\\ToolsApp\\ToolsApp.Models\\ToolsApp.Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

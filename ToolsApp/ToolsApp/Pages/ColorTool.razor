@@ -1,0 +1,60 @@
+﻿@page "/color-tool"
+
+@using ToolsApp.Models.Colors
+
+<h3>Color Tool</h3>
+
+<ul>
+	@foreach(var color in Colors)
+	{
+		<li>@color.Name</li>
+	}
+</ul>
+
+<form>
+	<label>
+		Color Name:
+    <input type="text" @bind="@AddColorForm.ColorName" />
+	</label>
+
+	<label>
+		Color Hexcode:
+    <input type="text" @bind="@AddColorForm.ColorHexcode" />
+	</label>
+
+  <button type="button" @onclick="AppendColor">Add Color</button>
+</form>
+
+
+@code {
+
+	private ColorForm AddColorForm = new();
+
+	private List<Color> Colors { get; set; } = new()
+		{
+			new(1, "red", "ff0000"),
+			new(2, "green", "00ff00"),
+			new(3, "blue", "0000ff"),
+		};
+
+	private void AppendColor()
+	{
+		Colors.Add(
+				new(
+					Colors.Max(c => c.Id) + 1,
+					AddColorForm.ColorName,
+					AddColorForm.ColorHexcode
+				)
+		);
+
+		AddColorForm = new();
+	}
+
+
+	class ColorForm
+	{
+		public string ColorName { get; set; } = "";
+		public string ColorHexcode { get; set; } = "";
+	}
+
+}
