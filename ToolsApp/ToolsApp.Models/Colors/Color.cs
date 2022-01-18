@@ -5,4 +5,9 @@
     string Name,
     string Hexcode
   );
+
+  public record NewColor(
+    string Name,
+    string Hexcode
+  );
 }

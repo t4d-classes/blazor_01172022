@@ -1,6 +1,7 @@
 ﻿@page "/color-tool"
 
 @using ToolsApp.Models.Colors
+@using ToolsApp.Components.ColorTool
 
 <header>
   <h3>Color Tool</h3>
@@ -13,24 +14,10 @@
 	}
 </ul>
 
-<form>
-	<label>
-		Color Name:
-    <input type="text" @bind="@AddColorForm.ColorName" />
-	</label>
-
-	<label>
-		Color Hexcode:
-    <input type="text" @bind="@AddColorForm.ColorHexcode" />
-	</label>
-
-  <button type="button" @onclick="AppendColor">Add Color</button>
-</form>
+<ColorForm ButtonText="Add Color" OnSubmitColor="AppendColor" />
 
 
 @code {
-
-	private ColorForm AddColorForm = new();
 
 	private List<Color> Colors { get; set; } = new()
 		{
@@ -39,24 +26,15 @@
 			new(3, "blue", "0000ff"),
 		};
 
-	private void AppendColor()
+	private void AppendColor(NewColor color)
 	{
 		Colors.Add(
 				new(
 					Colors.Max(c => c.Id) + 1,
-					AddColorForm.ColorName,
-					AddColorForm.ColorHexcode
+					color.Name,
+					color.Hexcode
 				)
 		);
-
-		AddColorForm = new();
-	}
-
-
-	class ColorForm
-	{
-		public string ColorName { get; set; } = "";
-		public string ColorHexcode { get; set; } = "";
 	}
 
 }

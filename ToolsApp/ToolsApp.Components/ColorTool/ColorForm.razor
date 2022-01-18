@@ -1,0 +1,41 @@
+﻿@using ToolsApp.Models.Colors
+
+<form>
+	<label>
+		Color Name:
+    <input type="text" @bind="@colorForm.ColorName" />
+	</label>
+
+	<label>
+		Color Hexcode:
+    <input type="text" @bind="@colorForm.ColorHexcode" />
+	</label>
+
+  <button type="button" @onclick="submitColor">@ButtonText</button>
+</form>
+
+
+@code {
+
+	[Parameter]
+	public string ButtonText { get; set; } = "Submit Color";
+
+	[Parameter]
+	public EventCallback<NewColor> OnSubmitColor { get; set; }
+
+	private ColorFormModel colorForm = new();
+
+	private async void submitColor() {
+		await OnSubmitColor.InvokeAsync(
+			new(colorForm.ColorName, colorForm.ColorHexcode));
+
+		colorForm = new();
+	}
+
+	class ColorFormModel
+	{
+		public string ColorName { get; set; } = "";
+		public string ColorHexcode { get; set; } = "";
+	}
+
+}
