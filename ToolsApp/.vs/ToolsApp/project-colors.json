@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "63002323-073c-46f0-8508-aaff471d76d1": {
+      "ProjectGuid": "63002323-073c-46f0-8508-aaff471d76d1",
+      "DisplayName": "ToolsApp.Models",
+      "ColorIndex": 0
+    },
+    "7ae0b2b3-6334-4974-8bb6-80fd485f7900": {
+      "ProjectGuid": "7ae0b2b3-6334-4974-8bb6-80fd485f7900",
+      "DisplayName": "ToolsApp.Services",
+      "ColorIndex": 1
+    },
+    "4cdae07e-ea10-4a77-ac85-9ffd2555fc5b": {
+      "ProjectGuid": "4cdae07e-ea10-4a77-ac85-9ffd2555fc5b",
+      "DisplayName": "ToolsApp",
+      "ColorIndex": 2
+    },
+    "bbb41c37-676d-4598-b0a2-0375219005f2": {
+      "ProjectGuid": "bbb41c37-676d-4598-b0a2-0375219005f2",
+      "DisplayName": "ToolsApp.Components",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}
