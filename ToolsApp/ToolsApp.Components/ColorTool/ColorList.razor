@@ -7,9 +7,18 @@
 	}
 </ul>
 
+<div>List Count: @itemCount</div>
+
 @code {
 
-  [Parameter]
+	[Parameter]
 	public List<Color> Colors { get; set; } = new();
+
+	private int itemCount { get; set; } = 0;
+
+	protected override void OnInitialized()
+	{
+		itemCount = Colors.Count();
+	}
 
 }
