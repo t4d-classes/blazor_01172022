@@ -9,6 +9,8 @@
 	<td>@Car.Price</td>
 	<td>
 		<button type="button"
+			@onclick="@(async () => await OnEditCar.InvokeAsync(Car.Id))">Edit</button>
+		<button type="button"
 			@onclick="@(async () => await OnDeleteCar.InvokeAsync(Car.Id))">Delete</button>
 	</td>
 
@@ -20,6 +22,8 @@
 	public Car Car { get; set; }
 
 	[Parameter]
-	public EventCallback<int> OnDeleteCar { get; set; }
+	public EventCallback<int> OnEditCar { get; set; }
 
+	[Parameter]
+	public EventCallback<int> OnDeleteCar { get; set; }
 }
