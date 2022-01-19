@@ -3,22 +3,15 @@
 <ul>
 	@foreach(var color in Colors)
 	{
-		<li>@color.Name</li>
+		<li>
+			@color.Name
+		</li>
 	}
 </ul>
-
-<div>List Count: @itemCount</div>
 
 @code {
 
 	[Parameter]
-	public List<Color> Colors { get; set; } = new();
-
-	private int itemCount { get; set; } = 0;
-
-	protected override void OnInitialized()
-	{
-		itemCount = Colors.Count();
-	}
+	public IEnumerable<Color> Colors { get; set; } = new List<Color>();
 
 }
