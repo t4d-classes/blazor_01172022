@@ -38,6 +38,7 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSingleton<IColorsService, ColorsServiceMemory>();
 builder.Services.AddSingleton<ICarsService, CarsServiceMemory>();
 builder.Services.AddSingleton<CarToolStoreService>();
+builder.Services.AddSingleton<ColorToolStoreService>();
 
 
 var app = builder.Build();

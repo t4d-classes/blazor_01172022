@@ -27,11 +27,11 @@
 	}
 
 	private void editCar(int carId) {
-		carToolStore.SetEditCarId(carId);
+		carToolStore.StartEditMode(carId);
 	}
 
 	private void cancelCar() {
-		carToolStore.SetEditCarId(-1);
+		carToolStore.CancelEditMode();
 	}
 
 	private void appendCar(NewCar car)

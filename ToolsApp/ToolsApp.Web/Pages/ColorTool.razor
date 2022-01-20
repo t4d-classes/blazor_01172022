@@ -4,26 +4,27 @@
 @using ToolsApp.Components.ColorTool
 @using ToolsApp.Services.Colors
 
-@inject IColorsService colorsService
+@inject ColorToolStoreService colorToolStore
 
 <ToolHeader HeaderText="Color Tool" />
 
-<ColorList Colors="@colors" />
+<ColorList Colors="@_colors" />
 
 <ColorForm ButtonText="Add Color" OnSubmitColor="AppendColor" />
 
 @code {
 
-	private IEnumerable<Color> colors { get; set; } = new List<Color>();
+	// private IEnumerable<Color> _colors => colorToolStore.Colors;
 
-	protected override void OnInitialized()
-	{
-		colors = colorsService.All();
+	private IEnumerable<Color> _colors {
+		get {
+			return colorToolStore.Colors;
+		}
 	}
 
 	private void AppendColor(NewColor color)
 	{
-		colors = colorsService.Append(color).All();
+		colorToolStore.AddColor(color);
 	}
 
 }

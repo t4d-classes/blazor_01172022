@@ -28,28 +28,34 @@ namespace ToolsApp.Services.Cars
        }
     }
 
-    public CarToolStoreService SetEditCarId(int editCarId) {
+    public CarToolStoreService StartEditMode(int editCarId) {
       _editCarId = editCarId;
+      return this;
+    }
+
+    public CarToolStoreService CancelEditMode()
+    {
+      _editCarId = -1;
       return this;
     }
 
     public CarToolStoreService AddCar(NewCar car) {
       _carsService.Append(car);
-      _editCarId = -1;
+      CancelEditMode();
       return this;
 		}
 
     public CarToolStoreService SaveCar(Car car)
     {
       _carsService.Replace(car);
-      _editCarId = -1;
+      CancelEditMode();
       return this;
     }
 
     public CarToolStoreService DeleteCar(int carId)
     {
       _carsService.Remove(carId);
-      _editCarId = -1;
+      CancelEditMode();
       return this;
     }
 
