@@ -2,60 +2,51 @@
 
 @using ToolsApp.Models.Cars
 @using ToolsApp.Components.CarTool
+@using ToolsApp.Services.Cars
+
+@inject CarToolStoreService carToolStore
 
 <ToolHeader HeaderText="Car Tool" />
-<CarTable Cars="@Cars" EditCarId="@editCarId"
-	OnEditCar="EditCar" OnDeleteCar="RemoveCar"
-	OnSaveCar="ReplaceCar" OnCancelCar="CancelCar" />
-<CarForm ButtonText="Add Car" OnSubmitCar="AppendCar" />
-
+<CarTable Cars="@cars" EditCarId="@editCarId"
+	OnEditCar="editCar" OnDeleteCar="removeCar"
+	OnSaveCar="replaceCar" OnCancelCar="cancelCar" />
+<CarForm ButtonText="Add Car" OnSubmitCar="appendCar" />
 
 @code {
 
-	private List<Car> Cars { get; set; } = new()
-        {
-            new(1, "Tesla", "S", 2019, "blue", 120000.0M),
-            new(2, "Ford", "Fusion Hybrid", 2020, "green", 45000.0M)
-        };
-
-	private int editCarId { get; set; } = -1;
-
-	private void EditCar(int carId) {
-		editCarId = carId;
-	}
-
-	private void AppendCar(NewCar car)
-	{
-		Cars.Add(
-				new(
-					Cars.Select(c => c.Id).DefaultIfEmpty(0).Max() + 1,
-					car.Make,
-					car.Model,
-					car.Year,
-					car.Color,
-					car.Price
-				)
-		);
-		editCarId = -1;
-	}
-
-	private void ReplaceCar(Car car) {
-		int carIndex = Cars.FindIndex(c => c.Id == car.Id);
-		Cars[carIndex] = car;
-		editCarId = -1;
-	}
-
-	private void RemoveCar(int carId) {
-
-		var carToRemove = Cars.Find(c => c.Id == carId);
-
-		if (carToRemove is not null) {
-			Cars.Remove(carToRemove);
+	private IEnumerable<Car> cars {
+		get {
+			return carToolStore.Cars;
 		}
-		editCarId = -1;
 	}
 
-	private void CancelCar() {
-		editCarId = -1;
+	private int editCarId {
+		get {
+			return carToolStore.EditCarId;
+		}
 	}
+
+	private void editCar(int carId) {
+		carToolStore.SetEditCarId(carId);
+	}
+
+	private void cancelCar() {
+		carToolStore.SetEditCarId(-1);
+	}
+
+	private void appendCar(NewCar car)
+	{
+		carToolStore.AddCar(car);
+	}
+
+	private void replaceCar(Car car)
+	{
+		carToolStore.SaveCar(car);
+	}
+
+	private void removeCar(int carId)
+	{
+		carToolStore.DeleteCar(carId);
+	}
+
 }

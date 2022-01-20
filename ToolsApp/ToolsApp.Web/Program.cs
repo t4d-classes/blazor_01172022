@@ -1,15 +1,44 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using ToolsApp.Web.Data;
+
+using Microsoft.EntityFrameworkCore;
+
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
+
+//using ToolsApp.Web.Data;
 using ToolsApp.Services.Colors;
+using ToolsApp.Services.Cars;
+using ToolsApp.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<ToolsAppContext>(options => {
+  options.UseSqlServer(builder.Configuration["ConnectionString"]);
+});
+
+builder.Services
+  .AddBlazorise(options =>
+  {
+    options.ChangeTextOnKeyPress = true; // optional
+        })
+  .AddBootstrapProviders()
+  .AddFontAwesomeIcons();
+
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
+
+builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSingleton<IColorsService, ColorsServiceMemory>();
+builder.Services.AddSingleton<ICarsService, CarsServiceMemory>();
+builder.Services.AddSingleton<CarToolStoreService>();
+
 
 var app = builder.Build();
 
