@@ -17,7 +17,7 @@
 
 @code {
 
-  private ElementReference defaultControl { get; set; }
+	private ElementReference defaultControl { get; set; }
 
 	private HeaderInfo _headerText = new HeaderInfo()
 		{
@@ -43,11 +43,12 @@
 		colorToolStore.DeleteColor(colorId);
 	}
 
-  private async Task setDefaultControl(ElementReference control)
-  {
-    defaultControl = control;
-    await JS.InvokeVoidAsync("toolsAppDemo.setFocus", defaultControl);
-  }
+	private async Task setDefaultControl(ElementReference control)
+	{
+		defaultControl = control;
+		await JS.InvokeVoidAsync("toolsAppDemo.setFocus", defaultControl);
+	}
 
+	
 
 }

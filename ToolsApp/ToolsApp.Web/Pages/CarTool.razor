@@ -9,6 +9,7 @@
 
 @inject CarToolStoreService carToolStore
 @inject ScreenBlockerService screenBlocker
+@inject IJSRuntime JS
 
 <ToolHeader HeaderText="@_headerText" />
 <CarTable Cars="@cars" EditCarId="@editCarId"
@@ -17,6 +18,9 @@
 <CarForm ButtonText="Add Car" OnSubmitCar="appendCar" />
 
 @code {
+
+	private RefreshCarsInvokeHelper? refreshCarsInvokeHelper;
+	private bool showBlocker = false;
 
 	private IEnumerable<Car> cars {
 		get {
@@ -38,9 +42,22 @@
 
 	protected override async Task OnInitializedAsync()
 	{
-		await screenBlocker.BlockScreen();
+		if (showBlocker) await screenBlocker.BlockScreen();
 		await carToolStore.RefreshCars();
-		await screenBlocker.UnblockScreen();
+		if (showBlocker) await screenBlocker.UnblockScreen();
+
+		refreshCarsInvokeHelper = new RefreshCarsInvokeHelper(DoRefreshCars);
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		showBlocker = true;
+
+		if (refreshCarsInvokeHelper is not null)
+		{
+			await JS.InvokeVoidAsync("refreshCarsCaller",
+				DotNetObjectReference.Create(refreshCarsInvokeHelper));
+		}
 	}
 
 	private void editCar(int carId) {
@@ -70,6 +87,28 @@
 		await screenBlocker.BlockScreen();
 		await carToolStore.DeleteCar(carId);
 		await screenBlocker.UnblockScreen();
+	}
+
+	private void DoRefreshCars()
+	{
+		carToolStore.RefreshCars();
+		StateHasChanged();
+  }
+
+	public class RefreshCarsInvokeHelper
+	{
+		private Action action;
+
+		public RefreshCarsInvokeHelper(Action action)
+		{
+				this.action = action;
+		}
+
+		[JSInvokable("ToolsApp")]
+		public void RefreshCarsCaller()
+		{
+				action.Invoke();
+		}
 	}
 
 }
