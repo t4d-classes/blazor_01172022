@@ -4,28 +4,39 @@
 @using ToolsApp.Models.Cars
 @using ToolsApp.Components.CarTool
 @using ToolsApp.Services.Cars
+@using ToolsApp.Models.Shared
 
 @inject CarToolStoreService carToolStore
 
-@*<ToolHeader HeaderText="Car Tool" />
-*@<CarTable Cars="@cars" EditCarId="@editCarId"
+<ToolHeader HeaderText="@_headerText" />
+<CarTable Cars="@cars" EditCarId="@editCarId"
 	OnEditCar="editCar" OnDeleteCar="removeCar"
 	OnSaveCar="replaceCar" OnCancelCar="cancelCar" />
 <CarForm ButtonText="Add Car" OnSubmitCar="appendCar" />
 
 @code {
 
-	private IEnumerable<Car> cars = new List<Car>();
-
-	protected override async Task OnInitializedAsync()
-	{
-		cars = await carToolStore.Cars();
+	private IEnumerable<Car> cars {
+		get {
+			return carToolStore.Cars;
+		}
 	}
+
+	private HeaderInfo _headerText = new HeaderInfo()
+		{
+			HeaderText = "Car Tool",
+			SubHeaderText = "The best way to manage cars!",
+		};
 
 	private int editCarId {
 		get {
 			return carToolStore.EditCarId;
 		}
+	}
+
+	protected override async Task OnInitializedAsync()
+	{
+		await carToolStore.RefreshCars();
 	}
 
 	private void editCar(int carId) {
@@ -38,17 +49,17 @@
 
 	private async Task appendCar(NewCar car)
 	{
-		cars = await (await carToolStore.AddCar(car)).Cars();
+		await carToolStore.AddCar(car);
 	}
 
 	private async Task replaceCar(Car car)
 	{
-		cars = await (await carToolStore.SaveCar(car)).Cars();
+		await carToolStore.SaveCar(car);
 	}
 
 	private async Task removeCar(int carId)
 	{
-		cars = await (await carToolStore.DeleteCar(carId)).Cars();
+		await carToolStore.DeleteCar(carId);
 	}
 
 }

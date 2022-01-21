@@ -10,14 +10,18 @@ namespace ToolsApp.Services.Cars
   public class CarToolStoreService
   {
     private ICarsService _carsService;
+
+    private IEnumerable<Car> _cars = new List<Car>();
     private int _editCarId = -1;
 
     public CarToolStoreService(ICarsService carsService) {
       _carsService = carsService;
     }
 
-    public async Task<IEnumerable<Car>> Cars() {
-       return await _carsService.All();
+    public IEnumerable<Car> Cars {
+      get {
+       return _cars;
+      }
     }
 
     public int EditCarId {
@@ -37,8 +41,15 @@ namespace ToolsApp.Services.Cars
       return this;
     }
 
+    public async Task<CarToolStoreService> RefreshCars()
+    {
+      _cars = await _carsService.All();
+      return this;
+    }
+
     public async Task<CarToolStoreService> AddCar(NewCar car) {
       await _carsService.Append(car);
+      await RefreshCars();
       CancelEditMode();
       return this;
 		}
@@ -46,6 +57,7 @@ namespace ToolsApp.Services.Cars
     public async Task<CarToolStoreService> SaveCar(Car car)
     {
       await _carsService.Replace(car);
+      await RefreshCars();
       CancelEditMode();
       return this;
     }
@@ -53,6 +65,7 @@ namespace ToolsApp.Services.Cars
     public async Task<CarToolStoreService> DeleteCar(int carId)
     {
       await _carsService.Remove(carId);
+      await RefreshCars();
       CancelEditMode();
       return this;
     }

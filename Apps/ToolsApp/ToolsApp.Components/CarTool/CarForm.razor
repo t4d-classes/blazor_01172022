@@ -1,0 +1,92 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using ToolsApp.Models.Cars
+@using ToolsApp.Components.Validators
+
+<EditForm Model="@carForm" OnValidSubmit="submitCar">
+
+  <DataAnnotationsValidator />
+  <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+
+  <label>
+    Make:
+    <input type="text" @bind="@carForm.Make" />
+    <ValidationMessage For="() => carForm.Make" />
+  </label>
+
+  <label>
+    Model:
+    <input type="text" @bind="@carForm.Model" />
+    <ValidationMessage For="() => carForm.Model" />
+  </label>
+
+  <label>
+    Year:
+    <input type="text" @bind="@carForm.Year" />
+    <ValidationMessage For="() => carForm.Year" />
+  </label>
+
+  <label>
+    Color:
+    <input type="text" @bind="@carForm.Color" />
+    <ValidationMessage For="() => carForm.Color" />
+  </label>
+
+  <label>
+    Price:
+    <input type="text" @bind="@carForm.Price" />
+    <ValidationMessage For="() => carForm.Price" />
+  </label>
+
+
+  <button>@ButtonText</button>
+
+
+</EditForm>
+
+
+@code {
+
+  [Parameter]
+  public string ButtonText { get; set; } = "Submit Car";
+
+  [Parameter]
+  public EventCallback<NewCar> OnSubmitCar { get; set; }
+
+  private CarFormModel carForm = new();
+
+  private async void submitCar()
+  {
+    await OnSubmitCar.InvokeAsync(
+      new(
+        carForm.Make,
+        carForm.Model,
+        carForm.Year,
+        carForm.Color,
+        carForm.Price
+      )
+    );
+
+    carForm = new();
+  }
+
+  class CarFormModel
+  {
+    [Required]
+    public string Make { get; set; } = "";
+
+    [Required]
+    public string Model { get; set; } = "";
+
+    [Required]
+    [MinCarYear()]
+    public int Year { get; set; } = 1900;
+
+    [Required]
+    public string Color { get; set; } = "";
+
+    [Required]
+    public decimal Price { get; set; } = 0;
+  }
+
+
+}

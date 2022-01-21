@@ -1,0 +1,48 @@
+﻿@page "/color-tool"
+
+@using Color = ToolsApp.Models.Colors.Color
+@using NewColor = ToolsApp.Models.Colors.NewColor
+@using ToolsApp.Components.ColorTool
+@using ToolsApp.Services.Colors
+
+@inject IColorsService colorsService
+@inject IJSRuntime JS
+
+<ToolHeader HeaderText="Color Tool" />
+
+<ColorList Colors="@Colors" OnDeleteColor="RemoveColor" />
+
+<ColorForm ButtonText="Add Color"
+           OnSubmitColor="@AppendColor"
+           DefaultControl="defaultControl"
+           OnDefaultControlChanged="setDefaultControl"/>
+
+
+@code {
+
+  private IEnumerable<Color> Colors { get; set; } = new List<Color>();
+
+  private ElementReference defaultControl { get; set; }
+
+  protected override async Task OnInitializedAsync()
+  {
+    Colors = await colorsService.All();
+  }
+
+  private async Task AppendColor(NewColor color)
+  {
+    Colors = await (await colorsService.Append(color)).All();
+  }
+
+  private async Task RemoveColor(int colorId)
+  {
+    Colors = await (await colorsService.Remove(colorId)).All();
+  }
+
+  private async Task setDefaultControl(ElementReference control)
+  {
+    defaultControl = control;
+    await JS.InvokeVoidAsync("toolsAppDemo.setFocus", defaultControl);
+  }
+
+}

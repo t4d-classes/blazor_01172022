@@ -1,0 +1,72 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using ToolsApp.Models.Colors
+@using ToolsApp.Components.Validators
+
+<EditForm Model="@colorForm" OnValidSubmit="submitColor">
+
+  <DataAnnotationsValidator />
+
+  <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+
+  <label>
+    Name:
+    <input type="text" @bind="@colorForm.Name" @ref="defaultControl" />
+    <ValidationMessage For="() => colorForm.Name" />
+  </label>
+
+  <label>
+    Hexcode:
+    <input type="text" @bind="@colorForm.Hexcode" />
+    <ValidationMessage For="() => colorForm.Hexcode" />
+  </label>
+
+  <button>@ButtonText</button>
+
+</EditForm>
+
+@code {
+
+  [Parameter]
+  public string ButtonText { get; set; } = "Submit Color";
+
+  [Parameter]
+  public EventCallback<NewColor> OnSubmitColor { get; set; }
+
+  [Parameter]
+  public ElementReference DefaultControl { get; set; }
+
+  [Parameter]
+  public EventCallback<ElementReference> OnDefaultControlChanged { get; set; }
+
+  private ElementReference defaultControl { get; set; }
+
+  private ColorFormModel colorForm = new();
+
+  protected override async Task OnAfterRenderAsync(bool firstRender)
+  {
+    if (firstRender)
+    {
+      await OnDefaultControlChanged.InvokeAsync(defaultControl);
+    }
+  }
+
+  private async void submitColor() {
+    await OnSubmitColor.InvokeAsync(
+      new(colorForm.Name, colorForm.Hexcode));
+
+    colorForm = new();
+  }
+
+  class ColorFormModel
+  {
+    [Required]
+    [MinLength(3)]
+    public string Name { get; set; } = "";
+
+    [Required]
+    // [RegularExpression(@"^[0-9a-fA-F]{6}$", ErrorMessage = "Hexcode is RRGGBB")]
+    [HexString(6, ErrorMessage:"Hexcode is RRGGBB")]
+    public string Hexcode { get; set; } = "";
+  }
+
+}

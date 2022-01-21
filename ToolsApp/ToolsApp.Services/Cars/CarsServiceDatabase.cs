@@ -14,9 +14,9 @@ namespace ToolsApp.Services.Cars
       _carsData = carsData;
     }
 
-    public Task<IEnumerable<Car>> All()
+    public async Task<IEnumerable<Car>> All()
     {
-      return _carsData.All();
+      return await _carsData.All();
     }
 
     public async Task<ICarsService> Append(NewCar car)

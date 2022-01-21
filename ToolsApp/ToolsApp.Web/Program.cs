@@ -35,8 +35,20 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddSingleton<WeatherForecastService>();
+
+
 builder.Services.AddSingleton<IColorsService, ColorsServiceMemory>();
-builder.Services.AddSingleton<ICarsService, CarsServiceMemory>();
+
+if (builder.Configuration["UseDatabase"] == "true") {
+  builder.Services.AddScoped<CarsData>();
+  builder.Services.AddScoped<ICarsService, CarsServiceDatabase>();
+}
+else {
+  builder.Services.AddSingleton<ICarsService, CarsServiceMemory>();
+}
+
+
+
 builder.Services.AddScoped<CarToolStoreService>();
 builder.Services.AddScoped<ColorToolStoreService>();
 
