@@ -37,8 +37,8 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSingleton<IColorsService, ColorsServiceMemory>();
 builder.Services.AddSingleton<ICarsService, CarsServiceMemory>();
-builder.Services.AddSingleton<CarToolStoreService>();
-builder.Services.AddSingleton<ColorToolStoreService>();
+builder.Services.AddScoped<CarToolStoreService>();
+builder.Services.AddScoped<ColorToolStoreService>();
 
 
 var app = builder.Build();

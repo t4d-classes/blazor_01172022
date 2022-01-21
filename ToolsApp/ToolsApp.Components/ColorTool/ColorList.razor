@@ -5,6 +5,9 @@
 	{
 		<li>
 			@color.Name
+			<button type="button"
+				@onclick="@(async () => await OnDeleteColor.InvokeAsync(color.Id))">Delete</button>
+
 		</li>
 	}
 </ul>
@@ -14,4 +17,22 @@
 	[Parameter]
 	public IEnumerable<Color> Colors { get; set; } = new List<Color>();
 
+	[Parameter]
+	public EventCallback<int> OnDeleteColor { get; set; }
+
+  private bool _shouldRender = true;
+
+  protected override bool ShouldRender()
+  {
+    return _shouldRender;
+  }
+
+  protected override void OnAfterRender(bool firstRender)
+  {
+    if (firstRender) {
+      _shouldRender = false;
+    }
+  }
+
 }
+

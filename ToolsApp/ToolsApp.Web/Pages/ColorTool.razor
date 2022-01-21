@@ -3,18 +3,26 @@
 @using ToolsApp.Models.Colors
 @using ToolsApp.Components.ColorTool
 @using ToolsApp.Services.Colors
+@using ToolsApp.Models.Shared
 
 @inject ColorToolStoreService colorToolStore
 
-<ToolHeader HeaderText="Color Tool" />
+<ToolHeader HeaderText="@_headerText" />
 
-<ColorList Colors="@_colors" />
+<ColorList Colors="@_colors" OnDeleteColor="RemoveColor" />
 
 <ColorForm ButtonText="Add Color" OnSubmitColor="AppendColor" />
 
 @code {
 
 	// private IEnumerable<Color> _colors => colorToolStore.Colors;
+
+	private HeaderInfo _headerText = new HeaderInfo()
+		{
+			HeaderText = "Color Tool!",
+			SubHeaderText = "Something",
+		};
+
 
 	private IEnumerable<Color> _colors {
 		get {
@@ -25,6 +33,11 @@
 	private void AppendColor(NewColor color)
 	{
 		colorToolStore.AddColor(color);
+	}
+
+	private void RemoveColor(int colorId)
+	{
+		colorToolStore.DeleteColor(colorId);
 	}
 
 }

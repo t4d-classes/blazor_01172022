@@ -29,5 +29,11 @@ namespace ToolsApp.Services.Colors
       _colorsService.Append(color);
       return this;
     }
+
+    public ColorToolStoreService DeleteColor(int colorId)
+    {
+      _colorsService.Remove(colorId);
+      return this;
+    }
   }
 }

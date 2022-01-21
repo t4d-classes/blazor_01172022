@@ -1,10 +1,25 @@
-﻿<header>
-	<h3>@HeaderText</h3>
+﻿@using ToolsApp.Models.Shared
+
+<header>
+	<h3>@HeaderText.HeaderText</h3>
 </header>
 
 @code {
-  
-  [Parameter]
-	public string HeaderText { get; set; } = "Tool App";
 
+  [Parameter]
+  public HeaderInfo HeaderText { get; set; } = new();
+
+  private bool _shouldRender = true;
+
+  protected override bool ShouldRender()
+  {
+    return _shouldRender;
+  }
+
+  protected override void OnAfterRender(bool firstRender)
+  {
+    if (firstRender) {
+      _shouldRender = false;
+    }
+  }
 }

@@ -1,4 +1,5 @@
-﻿using ToolsApp.Models.Cars;
+﻿using System.Threading.Tasks;
+using ToolsApp.Models.Cars;
 
 namespace ToolsApp.Services.Cars
 {
@@ -6,12 +7,12 @@ namespace ToolsApp.Services.Cars
   {
     private List<Car> _cars = new();
 
-    public IEnumerable<Car> All()
+    public Task<IEnumerable<Car>> All()
     {
-      return _cars;
+      return Task.FromResult<IEnumerable<Car>>(_cars);
     }
 
-    public ICarsService Append(NewCar car)
+    public Task<ICarsService> Append(NewCar car)
     {
       _cars.Add(
         new(
@@ -24,10 +25,10 @@ namespace ToolsApp.Services.Cars
         )
       );
 
-      return this;
+      return Task.FromResult<ICarsService>(this);
     }
 
-    public ICarsService Remove(int carId)
+    public Task<ICarsService> Remove(int carId)
     {
       var carToRemove = _cars.Find(c => c.Id == carId);
 
@@ -35,15 +36,15 @@ namespace ToolsApp.Services.Cars
         _cars.Remove(carToRemove);
       }
 
-      return this;
+      return Task.FromResult<ICarsService>(this);
     }
 
-    public ICarsService Replace(Car car)
+    public Task<ICarsService> Replace(Car car)
     {
       int carIndex = _cars.FindIndex(c => c.Id == car.Id);
       _cars[carIndex] = car;
 
-      return this;
+      return Task.FromResult<ICarsService>(this);
     }
   }
 }
