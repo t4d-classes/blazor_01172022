@@ -6,16 +6,18 @@
 @using ToolsApp.Models.Shared
 
 @inject ColorToolStoreService colorToolStore
+@inject IJSRuntime JS
 
 <ToolHeader HeaderText="@_headerText" />
 
 <ColorList Colors="@_colors" OnDeleteColor="RemoveColor" />
 
-<ColorForm ButtonText="Add Color" OnSubmitColor="AppendColor" />
+<ColorForm ButtonText="Add Color" OnSubmitColor="AppendColor"
+	DefaultControl="defaultControl" OnDefaultControlChanged="setDefaultControl"/>
 
 @code {
 
-	// private IEnumerable<Color> _colors => colorToolStore.Colors;
+  private ElementReference defaultControl { get; set; }
 
 	private HeaderInfo _headerText = new HeaderInfo()
 		{
@@ -24,6 +26,7 @@
 		};
 
 
+	// private IEnumerable<Color> _colors => colorToolStore.Colors;
 	private IEnumerable<Color> _colors {
 		get {
 			return colorToolStore.Colors;
@@ -39,5 +42,12 @@
 	{
 		colorToolStore.DeleteColor(colorId);
 	}
+
+  private async Task setDefaultControl(ElementReference control)
+  {
+    defaultControl = control;
+    await JS.InvokeVoidAsync("toolsAppDemo.setFocus", defaultControl);
+  }
+
 
 }

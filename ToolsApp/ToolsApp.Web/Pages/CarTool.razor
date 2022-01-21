@@ -4,9 +4,11 @@
 @using ToolsApp.Models.Cars
 @using ToolsApp.Components.CarTool
 @using ToolsApp.Services.Cars
+@using ToolsApp.Services.Shared
 @using ToolsApp.Models.Shared
 
 @inject CarToolStoreService carToolStore
+@inject ScreenBlockerService screenBlocker
 
 <ToolHeader HeaderText="@_headerText" />
 <CarTable Cars="@cars" EditCarId="@editCarId"
@@ -36,7 +38,9 @@
 
 	protected override async Task OnInitializedAsync()
 	{
+		await screenBlocker.BlockScreen();
 		await carToolStore.RefreshCars();
+		await screenBlocker.UnblockScreen();
 	}
 
 	private void editCar(int carId) {
@@ -49,17 +53,23 @@
 
 	private async Task appendCar(NewCar car)
 	{
+		await screenBlocker.BlockScreen();
 		await carToolStore.AddCar(car);
+		await screenBlocker.UnblockScreen();
 	}
 
 	private async Task replaceCar(Car car)
 	{
+		await screenBlocker.BlockScreen();
 		await carToolStore.SaveCar(car);
+		await screenBlocker.UnblockScreen();
 	}
 
 	private async Task removeCar(int carId)
 	{
+		await screenBlocker.BlockScreen();
 		await carToolStore.DeleteCar(carId);
+		await screenBlocker.UnblockScreen();
 	}
 
 }

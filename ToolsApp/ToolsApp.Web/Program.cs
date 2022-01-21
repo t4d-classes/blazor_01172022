@@ -9,6 +9,7 @@ using Blazorise.Icons.FontAwesome;
 //using ToolsApp.Web.Data;
 using ToolsApp.Services.Colors;
 using ToolsApp.Services.Cars;
+using ToolsApp.Services.Shared;
 using ToolsApp.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,10 +48,10 @@ else {
   builder.Services.AddSingleton<ICarsService, CarsServiceMemory>();
 }
 
-
-
 builder.Services.AddScoped<CarToolStoreService>();
 builder.Services.AddScoped<ColorToolStoreService>();
+
+builder.Services.AddScoped<ScreenBlockerService>();
 
 
 var app = builder.Build();

@@ -19,20 +19,5 @@
 
 	[Parameter]
 	public EventCallback<int> OnDeleteColor { get; set; }
-
-  private bool _shouldRender = true;
-
-  protected override bool ShouldRender()
-  {
-    return _shouldRender;
-  }
-
-  protected override void OnAfterRender(bool firstRender)
-  {
-    if (firstRender) {
-      _shouldRender = false;
-    }
-  }
-
 }
 

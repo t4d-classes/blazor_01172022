@@ -3,7 +3,7 @@
 <form>
 	<label>
 		Color Name:
-    <input type="text" @bind="@colorForm.ColorName" />
+    <input type="text" @bind="@colorForm.ColorName" @ref="defaultControl" />
 	</label>
 	<label>
 		Color Hexcode:
@@ -19,6 +19,23 @@
 
 	[Parameter]
 	public EventCallback<NewColor> OnSubmitColor { get; set; }
+
+  [Parameter]
+  public ElementReference DefaultControl { get; set; }
+
+  [Parameter]
+  public EventCallback<ElementReference> OnDefaultControlChanged { get; set; }
+
+  private ElementReference defaultControl { get; set; }
+
+  protected override async Task OnAfterRenderAsync(bool firstRender)
+  {
+    if (firstRender)
+    {
+      DefaultControl = defaultControl;
+      await OnDefaultControlChanged.InvokeAsync(DefaultControl);
+    }
+  }
 
 	private ColorFormModel colorForm = new();
 
